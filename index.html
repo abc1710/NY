@@ -167,11 +167,13 @@
     // Handle Yes/No buttons
     yesButton.addEventListener('click', () => {
       response.textContent = "WOOHOO! I hope it's not a prank 🤪! Happy New Year!🥳✨";
+      console.log("Response: YES");
       startFireworks();
     });
 
     noButton.addEventListener('click', () => {
       response.textContent = "That's okay! Don't stress over it! Wishing you all the best 😊";
+      console.log("Response: NO");
       showSadEmoji();
     });
 
