@@ -167,13 +167,17 @@
     // Handle Yes/No buttons
     yesButton.addEventListener('click', () => {
       response.textContent = "WOOHOO! I hope it's not a prank 🤪! Happy New Year!🥳✨";
-      console.log("Response: YES");
+      const phoneNumber = 60199647580;
+      const message = encodeURIComponent('Response: YES');
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
       startFireworks();
     });
 
     noButton.addEventListener('click', () => {
       response.textContent = "That's okay! Don't stress over it! Wishing you all the best 😊";
-      console.log("Response: NO");
+      const phoneNumber = '60199647580'; // Replace with your phone number
+      const message = encodeURIComponent('Response: NO');
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
       showSadEmoji();
     });
 
