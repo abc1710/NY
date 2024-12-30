@@ -16,7 +16,7 @@
       background-size: cover;
       height: 100vh;
       margin: 0;
-      overflow: auto; /* Allow scrolling */
+      overflow: hidden;
     }
 
     .container {
@@ -26,14 +26,16 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
     }
 
     h1 {
       color: #FF5733;
       font-family: 'Playfair Display', serif;
       margin-bottom: 25px;
-      white-space: normal; /* Ensure text wraps */
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards;
     }
 
     h4 {
@@ -41,7 +43,10 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.2em;
       margin-bottom: 20px;
-      white-space: normal; /* Ensure text wraps */
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards;
     }
 
     p {
@@ -104,23 +109,34 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
     @media (max-width: 600px) {
       h1, h4 {
-        font-size: 1.2em; /* Reduce font size for smaller screens */
+        font-size: 1.2em;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
 
       p {
         font-size: 0.8em;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding: 10px;
       }
 
       .container {
+        max-width: 100%;
         padding: 15px;
-        max-width: 100%; /* Allow full width for smaller screens */
       }
 
       button {
         font-size: 1em;
         padding: 10px 15px;
+        margin: 10px auto;
       }
     }
   </style>
@@ -202,7 +218,7 @@
           x: x,
           y: y,
           radius: Math.random() * 3 + 1,
-          color: hsl(${Math.random() * 360}, 100%, 50%),
+          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
           velocityX: (Math.random() - 0.5) * 8,
           velocityY: (Math.random() - 0.5) * 8,
           alpha: 1
@@ -265,4 +281,5 @@
   </script>
 </body>
 </html>
+
 
