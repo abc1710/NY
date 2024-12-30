@@ -20,11 +20,9 @@
     }
 
     .container {
-      animation: fadeIn 2s ease-in-out;
       max-width: 90%;
       background: rgba(255, 255, 255, 0.8);
-      padding: 15px;
-      margin: 10px auto;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
@@ -33,11 +31,6 @@
       color: #FF5733;
       font-family: 'Playfair Display', serif;
       margin-bottom: 25px;
-      overflow: visible;
-      white-space: normal;
-      word-wrap: break-word;
-      width: 0;
-      animation: typing 3s steps(30, end) forwards;
     }
 
     h4 {
@@ -45,11 +38,6 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.2em;
       margin-bottom: 20px;
-      overflow: visible;
-      white-space: normal;
-      word-wrap: break-word;
-      width: 0;
-      animation: typing 3s steps(30, end) forwards;
     }
 
     p {
@@ -107,36 +95,22 @@
       color: #333;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
     @media (max-width: 600px) {
       h1, h4 {
-        font-size: 1.2em;
-        line-height: 1.4;
+        font-size: 1.5em;
       }
 
       p {
         font-size: 0.8em;
-        line-height: 1.4;
-        word-wrap: break-word;
       }
 
       .container {
-        width: 100%;
-        margin: 0 10px;
+        padding: 15px;
       }
 
       button {
         font-size: 1em;
-        padding: 10px;
+        padding: 10px 15px;
       }
     }
   </style>
@@ -174,18 +148,13 @@
 
     // Show first content
     content1.style.display = 'block';
-    content1.querySelector('h1').addEventListener('animationend', () => {
-      nextButton1.style.display = 'block';
-    });
+    nextButton1.style.display = 'block';
 
     // Transition to second content
     nextButton1.addEventListener('click', () => {
       content1.style.display = 'none';
       content2.style.display = 'block';
-      content2.querySelector('h4').style.animation = 'typing 3s steps(30, end) forwards';
-      content2.querySelector('h4').addEventListener('animationend', () => {
-        nextButton2.style.display = 'block';
-      });
+      nextButton2.style.display = 'block';
     });
 
     // Transition to final content
