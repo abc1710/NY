@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Can We Get to Know Each Other?</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -14,9 +14,9 @@
       text-align: center;
       background: linear-gradient(135deg, #a8edea, #fed6e3);
       background-size: cover;
-      height: auto;
+      height: 100vh;
       margin: 0;
-      overflow: auto;
+      overflow: hidden;
     }
 
     .container {
@@ -57,7 +57,7 @@
     }
 
     #content1, #content2, #finalContent {
-      display: block !important;
+      display: none;
     }
 
     button {
@@ -116,27 +116,20 @@
 
     @media (max-width: 600px) {
       h1, h4 {
-        font-size: 1.2em;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
+        font-size: 1.5em;
       }
 
       p {
         font-size: 0.8em;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        padding: 10px;
       }
 
       .container {
-        max-width: 100%;
         padding: 15px;
       }
 
       button {
         font-size: 1em;
         padding: 10px 15px;
-        margin: 10px auto;
       }
     }
   </style>
@@ -180,7 +173,7 @@
 
     // Transition to second content
     nextButton1.addEventListener('click', () => {
-      content1.style.display = 'block';
+      content1.style.display = 'none';
       content2.style.display = 'block';
       content2.querySelector('h4').style.animation = 'typing 3s steps(30, end) forwards';
       content2.querySelector('h4').addEventListener('animationend', () => {
@@ -281,5 +274,6 @@
   </script>
 </body>
 </html>
+ml>
 
 
