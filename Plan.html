@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Can We Get to Know Each Other?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      background-size: cover;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      animation: fadeIn 2s ease-in-out;
+      max-width: 90%;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      color: #FF5733;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 25px;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards;
+    }
+
+    h4 {
+      color: #2ECC71;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards;
+    }
+
+    p {
+      color: #34495E;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9em;
+      margin-bottom: 30px;
+    }
+
+    #content1, #content2, #finalContent {
+      display: none;
+    }
+
+    button {
+      font-size: 1.2em;
+      padding: 15px 25px;
+      margin: 15px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #008CBA;
+      color: white;
+      display: none;
+    }
+
+    button:hover {
+      background-color: #2980B9;
+    }
+
+    #yesButton {
+      background-color: #27AE60;
+    }
+
+    #yesButton:hover {
+      background-color: #229954;
+    }
+
+    #noButton {
+      background-color: #E74C3C;
+    }
+
+    #noButton:hover {
+      background-color: #C0392B;
+    }
+
+    #yesButton, #noButton {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    #response {
+      margin-top: 20px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @media (max-width: 600px) {
+      h1, h4 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 0.8em;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      button {
+        font-size: 1em;
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="content1">
+      <h1>Hey there! 🤗</h1>
+      <button id="nextButton1">Next</button>
+    </div>
+    <div id="content2">
+      <h4>I just wanted to say I think you're cute and awesome 😉</h4>
+      <button id="nextButton2">Next</button>
+    </div>
+    <div id="finalContent">
+      <h4>I was wondering... Can I get to know you closer? 🫣</h4>
+      <p>p/s: No pressure, whichever your answer, I'm cool with it! 🙃</p>
+      <button id="yesButton">Yes</button>
+      <button id="noButton">No</button>
+      <p id="response"></p>
+      <canvas id="fireworksCanvas" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;"></canvas>
+    </div>
+  </div>
+  <script>
+    const content1 = document.getElementById('content1');
+    const content2 = document.getElementById('content2');
+    const finalContent = document.getElementById('finalContent');
+    const nextButton1 = document.getElementById('nextButton1');
+    const nextButton2 = document.getElementById('nextButton2');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const response = document.getElementById('response');
+    const fireworksCanvas = document.getElementById('fireworksCanvas');
+    const ctx = fireworksCanvas.getContext('2d');
+
+    // Show first content
+    content1.style.display = 'block';
+    content1.querySelector('h1').addEventListener('animationend', () => {
+      nextButton1.style.display = 'block';
+    });
+
+    // Transition to second content
+    nextButton1.addEventListener('click', () => {
+      content1.style.display = 'none';
+      content2.style.display = 'block';
+      content2.querySelector('h4').style.animation = 'typing 3s steps(30, end) forwards';
+      content2.querySelector('h4').addEventListener('animationend', () => {
+        nextButton2.style.display = 'block';
+      });
+    });
+
+    // Transition to final content
+    nextButton2.addEventListener('click', () => {
+      content2.style.display = 'none';
+      finalContent.style.display = 'block';
+      finalContent.querySelectorAll('button').forEach(button => button.style.display = 'inline-block');
+    });
+
+    // Handle Yes/No buttons
+    yesButton.addEventListener('click', () => {
+      response.textContent = "WOOHOO! I hope it's not a prank 🤪! Happy New Year!🥳✨";
+      startFireworks();
+    });
+
+    noButton.addEventListener('click', () => {
+      response.textContent = "That's okay! Don't stress over it! Wishing you all the best 😊";
+      showSadEmoji();
+    });
+
+    function startFireworks() {
+      fireworksCanvas.style.display = 'block';
+      fireworksCanvas.width = window.innerWidth;
+      fireworksCanvas.height = window.innerHeight;
+
+      const particles = [];
+
+      function createParticle(x, y) {
+        const particle = {
+          x: x,
+          y: y,
+          radius: Math.random() * 3 + 1,
+          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+          velocityX: (Math.random() - 0.5) * 8,
+          velocityY: (Math.random() - 0.5) * 8,
+          alpha: 1
+        };
+        particles.push(particle);
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+        particles.forEach((particle, index) => {
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          ctx.fillStyle = particle.color;
+          ctx.globalAlpha = particle.alpha;
+          ctx.fill();
+
+          particle.x += particle.velocityX;
+          particle.y += particle.velocityY;
+          particle.alpha -= 0.01;
+
+          if (particle.alpha <= 0) {
+            particles.splice(index, 1);
+          }
+        });
+        requestAnimationFrame(drawParticles);
+      }
+
+      for (let i = 0; i < 100; i++) {
+        createParticle(fireworksCanvas.width / 2, fireworksCanvas.height / 2);
+      }
+
+      drawParticles();
+
+      setTimeout(() => {
+        fireworksCanvas.style.display = 'none';
+      }, 3000);
+    }
+
+    function showSadEmoji() {
+      const sadEmoji = document.createElement('div');
+      sadEmoji.textContent = "😔";
+      sadEmoji.style.position = 'fixed';
+      sadEmoji.style.top = '50%';
+      sadEmoji.style.left = '50%';
+      sadEmoji.style.transform = 'translate(-50%, -50%)';
+      sadEmoji.style.fontSize = '5em';
+      sadEmoji.style.zIndex = '1000';
+      document.body.appendChild(sadEmoji);
+
+      setTimeout(() => {
+        sadEmoji.remove();
+      }, 3000);
+    }
+
+    // Adjust canvas size dynamically for orientation changes
+    window.addEventListener('resize', () => {
+      fireworksCanvas.width = window.innerWidth;
+      fireworksCanvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
+
